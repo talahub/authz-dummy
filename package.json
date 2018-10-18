@@ -1,0 +1,22 @@
+{
+  "name": "peatio-devel-auth",
+  "version": "1.1.1",
+  "description": "Auth Server for Peatio development environment",
+  "author": {
+    "name": "Dima Koval",
+    "email": "dkoval@heliostech.fr"
+  },
+  "license": "MIT",
+  "main": "bin/authz-dummy",
+  "dependencies": {
+    "express": "^4.15.3",
+    "jsonwebtoken": "^8.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rubykube/peatio-devel-auth"
+  },
+  "scripts": {
+    "start": "bin/authz-dummy"
+  }
+}
