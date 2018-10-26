@@ -37,22 +37,14 @@ const auth = {
   },
 
   // Generates new payload with default uid and email
-  generatePayload: () => {
+  generatePayload: function () {
     let ts = parseInt(Date.now() / 1000)
 
-    return {
-      "iat": ts,
-      "exp": ts + 5,
-      "sub": "session",
-      "iss": "barong",
-      "aud": ["peatio"],
-      "jti": crypto.randomBytes(8).toString("hex"),
-      "uid": "ID0000000000",
-      "email": "john.doe@gmail.com",
-      "role": "admin",
-      "level": 3,
-      "state": "active"
-    }
+    return Object.assign({}, this.config.payloadTemplate, {
+      iat: ts,
+      exp: ts + this.config.jwtTTL,
+      jti: crypto.randomBytes(8).toString('hex'),
+    })
   },
 }
 
