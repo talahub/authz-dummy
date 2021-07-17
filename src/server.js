@@ -22,8 +22,8 @@ const server = {
   },
 
   start: function () {
-    this.app.listen(8005, function () {
-      console.log('Starting Peatio development authz server on localhost:8005')
+    this.app.listen(8008, function () {
+      console.log('Starting Peatio development authz server on localhost:8008')
     })
   }
 }

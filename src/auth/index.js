@@ -16,23 +16,11 @@ const auth = {
 
   // Initialize auth middleware routes
   drawRoutes: function() {
-    // Skip authentication for open endpoints and static files
-    this.app.all([
-      // root path
-      /^\/$/,
-
-      // Ambassador diagnostics
-      /^\/ambassador/,
-
-      // static files
-      /\.(js|css|ico|jpe?g|png|svg)$/
-    ], (req, res) => res.send(200))
-
     this.app.all('*', (req, res) => {
       let token = jwt.sign(this.generatePayload(), this.config.jwtPrivateKey, { algorithm: 'RS256' })
-
+      console.log(token)
       res.set('Authorization', `Bearer ${token}`)
-      res.status(200).end()
+      res.status(200).send(token).end()
     })
   },
 

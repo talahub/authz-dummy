@@ -1,16 +1,25 @@
 const fs = require('fs')
 
+if (process.env.TIKI_USER_ID)
+  tikiUserId = process.env.TIKI_USER_ID
+else
+  throw new Error('User is missing, set TIKI_USER_ID env variable')
+
 const config = {
   // JWT payload defaults
+  // payloadTemplate: {
+  //   iss:   'barong',
+  //   sub: 'session',
+  //   aud: ['peatio'],
+  //   email: 'admin@barong.io',
+  //   uid:   'U123456789',
+  //   role:  'superadmin',
+  //   state: 'active',
+  //   level: 3,
+  // },
+
   payloadTemplate: {
-    iss:   'barong',
-    sub: 'session',
-    aud: ['peatio'],
-    email: 'john.doe@gmail.com',
-    uid:   'ID0000000000',
-    role:  'member',
-    state: 'active',
-    level: 3,
+    sub: tikiUserId
   },
 
   load: function () {
@@ -20,7 +29,7 @@ const config = {
     cfg.jwtPrivateKey = this.loadPrivateKey()
 
     // seconds before JWT expire
-    cfg.jwtTTL = parseInt(process.env.DUMMY_JWT_TTL) || 5
+    cfg.jwtTTL = 2592000 // 30 days
 
     // merge default payload with configs from env
     cfg.payloadTemplate = Object.assign(
