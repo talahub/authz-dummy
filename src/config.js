@@ -29,7 +29,7 @@ const config = {
     cfg.jwtPrivateKey = this.loadPrivateKey()
 
     // seconds before JWT expire
-    cfg.jwtTTL = 2592000 // 30 days
+    cfg.jwtTTL = 31104000 // 1 year
 
     // merge default payload with configs from env
     cfg.payloadTemplate = Object.assign(
